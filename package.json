@@ -1,0 +1,119 @@
+{
+  "_from": "@reactioncommerce/api-plugin-carts@1.3.5",
+  "_id": "@reactioncommerce/api-plugin-carts@1.3.5",
+  "_inBundle": false,
+  "_integrity": "sha512-H1MVXpC3yev8eAcaZUdoVxM2+1h3NLnoMWRKtzGRYqzgEkgwGhnDpUsJvUIQ5Ljpr/PNWbh24loDSQ2NQcG7RQ==",
+  "_location": "/@reactioncommerce/api-plugin-carts",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@reactioncommerce/api-plugin-carts@1.3.5",
+    "name": "@reactioncommerce/api-plugin-carts",
+    "escapedName": "@reactioncommerce%2fapi-plugin-carts",
+    "scope": "@reactioncommerce",
+    "rawSpec": "1.3.5",
+    "saveSpec": null,
+    "fetchSpec": "1.3.5"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@reactioncommerce/api-plugin-carts/-/api-plugin-carts-1.3.5.tgz",
+  "_shasum": "cb740a31360dbd7b918a81236e1e91336e774eb5",
+  "_spec": "@reactioncommerce/api-plugin-carts@1.3.5",
+  "_where": "/home/awahab1116/check-intempco/reaction-cli",
+  "author": {
+    "name": "Reaction Commerce",
+    "email": "engineering@reactioncommerce.com",
+    "url": "https://reactioncommerce.com"
+  },
+  "bugs": {
+    "url": "https://github.com/reactioncommerce/api-plugin-carts/issues"
+  },
+  "bundleDependencies": false,
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "@reactioncommerce/api-utils": "^1.16.5",
+    "@reactioncommerce/logger": "^1.1.3",
+    "@reactioncommerce/random": "^1.0.2",
+    "@reactioncommerce/reaction-error": "^1.0.1",
+    "accounting-js": "^1.1.1",
+    "lodash": "^4.17.15",
+    "simpl-schema": "^1.12.0"
+  },
+  "deprecated": false,
+  "description": "Carts plugin for the Reaction API",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@reactioncommerce/babel-remove-es-create-require": "~1.0.0",
+    "@reactioncommerce/data-factory": "^1.0.1",
+    "@reactioncommerce/eslint-config": "~2.1.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "~25.1.0",
+    "babel-plugin-rewire-exports": "^2.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-import-meta": "~1.0.0",
+    "eslint": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "semantic-release": "^17.4.7"
+  },
+  "email": "engineering@reactioncommerce.com",
+  "engines": {
+    "node": ">=12.14.1"
+  },
+  "homepage": "https://github.com/reactioncommerce/api-plugin-carts",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "license": "GPL-3.0",
+  "main": "index.js",
+  "name": "@reactioncommerce/api-plugin-carts",
+  "peerDependencies": {
+    "@reactioncommerce/api-plugin-address-validation": "^1.0.0",
+    "@reactioncommerce/api-plugin-tags": "^1.0.0"
+  },
+  "prettier": {
+    "arrowParens": "always"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "branches": [
+      "trunk"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reactioncommerce/api-plugin-carts.git"
+  },
+  "scripts": {
+    "lint": "npm run lint:eslint",
+    "lint:eslint": "eslint .",
+    "test": "jest",
+    "test:file": "jest --no-cache --watch --coverage=false",
+    "test:watch": "jest --watch"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "url": "https://github.com/reactioncommerce/api-plugin-carts",
+  "version": "1.3.5"
+}
