@@ -21,8 +21,8 @@ import addCartItems from "../util/addCartItems.js";
  *   optionally retry with the correct price or quantity.
  */
 export default async function createCart(context, input) {
-  const { items, shopId, shouldCreateWithoutItems = false,  createRfq = false, rfqId = "" } = input;
-  const { collections, accountId = null, getFunctionsOfType } = context;
+  const { items, shopId, shouldCreateWithoutItems = false,  createRfq = false, rfqId = "", userId = null } = input;
+  const { collections, accountId = userId ?? null, getFunctionsOfType } = context;
   const { Cart, Shops } = collections;
   console.log("IN create cart")
 
