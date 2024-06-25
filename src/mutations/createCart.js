@@ -21,7 +21,7 @@ import addCartItems from "../util/addCartItems.js";
  *   optionally retry with the correct price or quantity.
  */
 export default async function createCart(context, input) {
-  const { items, shopId, shouldCreateWithoutItems = false } = input;
+  const { items, shopId, shouldCreateWithoutItems = false,  createRfq = false, rfqId = "" } = input;
   const { collections, accountId = null, getFunctionsOfType } = context;
   const { Cart, Shops } = collections;
   console.log("IN create cart")
@@ -39,15 +39,28 @@ export default async function createCart(context, input) {
     }
   }
 
-  const {
-    incorrectPriceFailures,
-    minOrderQuantityFailures,
-    updatedItemList
-  } = await addCartItems(context, [], items);
-
-  // If all input items were invalid, don't create a cart
-  if (!updatedItemList.length && shouldCreateWithoutItems !== true) {
-    return { cart: null, incorrectPriceFailures, minOrderQuantityFailures, token: null };
+  let incorrectPriceFailures,
+  minOrderQuantityFailures,
+  updatedItemList;
+  if(createRfq) {
+    updatedItemList = items
+  } else {
+    // const {
+    //   incorrectPriceFailures,
+    //   minOrderQuantityFailures,
+    //   updatedItemList
+    // } = await addCartItems(context, [], items);
+    const response = await addCartItems(context, [], items);
+   
+    incorrectPriceFailures = response?.incorrectPriceFailures,
+    minOrderQuantityFailures = response?.minOrderQuantityFailures,
+    updatedItemList = response?.updatedItemList
+    
+  
+    // If all input items were invalid, don't create a cart
+    if (!updatedItemList.length && shouldCreateWithoutItems !== true) {
+      return { cart: null, incorrectPriceFailures, minOrderQuantityFailures, token: null };
+    }
   }
 
   let anonymousAccessToken = null;
@@ -73,6 +86,10 @@ export default async function createCart(context, input) {
       status: "new"
     }
   };
+
+  if(rfqId) {
+    newCart['rfqId'] = rfqId
+  }
 
   let referenceId;
   const createReferenceIdFunctions = getFunctionsOfType("createCartReferenceId");

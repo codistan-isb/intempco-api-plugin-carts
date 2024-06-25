@@ -79,9 +79,6 @@
   },
   "homepage": "https://github.com/reactioncommerce/api-plugin-carts",
   "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "license": "GPL-3.0",
   "main": "index.js",
