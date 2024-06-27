@@ -22,22 +22,25 @@ import addCartItems from "../util/addCartItems.js";
  */
 export default async function createCart(context, input) {
   const { items, shopId, shouldCreateWithoutItems = false,  createRfq = false, rfqId = "", userId = null } = input;
-  const { collections, accountId = userId ?? null, getFunctionsOfType } = context;
+  let { collections, accountId = userId ?? null, getFunctionsOfType } = context;
   const { Cart, Shops } = collections;
   console.log("IN create cart")
 
+  if(rfqId && userId) {
+    accountId = userId
+  }
   if (shouldCreateWithoutItems !== true && (!Array.isArray(items) || !items.length)) {
     throw new ReactionError("invalid-param", "A cart may not be created without at least one item in it");
   }
 
   // If we have an accountId and that account already has a cart for this shop, throw
-  if (accountId) {
-    const existingCart = await Cart.findOne({ accountId, shopId }, { projection: { _id: 1 } });
+  // if (accountId) {
+  //   const existingCart = await Cart.findOne({ accountId, shopId }, { projection: { _id: 1 } });
 
-    if (existingCart) {
-      throw new ReactionError("cart-found", "Each account may have only one cart per shop at a time");
-    }
-  }
+  //   if (existingCart) {
+  //     throw new ReactionError("cart-found", "Each account may have only one cart per shop at a time");
+  //   }
+  // }
 
   let incorrectPriceFailures,
   minOrderQuantityFailures,

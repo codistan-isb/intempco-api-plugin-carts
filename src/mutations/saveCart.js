@@ -11,8 +11,10 @@ export default async function saveCart(context, cart) {
   const { appEvents, collections: { Cart }, userId = null } = context;
 
   // These will mutate `cart`
-  await context.mutations.removeMissingItemsFromCart(context, cart);
-  await context.mutations.transformAndValidateCart(context, cart);
+  if(!cart?.rfqId) {
+    await context.mutations.removeMissingItemsFromCart(context, cart);
+    await context.mutations.transformAndValidateCart(context, cart);
+  }
 
   const { result, upsertedCount } = await Cart.replaceOne({ _id: cart._id }, cart, { upsert: true });
   if (result.ok !== 1) throw new ReactionError("server-error", "Unable to save cart");

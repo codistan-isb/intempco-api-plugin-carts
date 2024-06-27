@@ -45,7 +45,7 @@ export default async function removeMissingItemsFromCart(context, cart) {
   // whenever we save a cart, but sometimes this mutation will need to be called
   // when initially reading a cart, before attempting to transform it to a CommonOrder.
   // So we'll also update the groups here.
-  cart.shipping.forEach((group) => {
+  cart?.shipping?.forEach?.((group) => {
     group.itemIds = (group.itemIds || []).filter((itemId) => !!items.find((item) => item._id === itemId));
   });
 }
