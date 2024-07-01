@@ -280,11 +280,18 @@ extend type Query {
     "Shop that owns the cart"
     shopId: ID!
   ): Cart
+
+  getCartById(input: CartId) : JSON
 }
 
 ####################
 # Inputs
 ####################
+"CartId Input"
+input CartId {
+  id: ID!
+}
+
 
 "The input necessary to create a cart"
 input CreateCartInput {

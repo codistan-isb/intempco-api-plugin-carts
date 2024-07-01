@@ -24,5 +24,5 @@ export default async function accountCartByAccountId(context, { accountId, shopI
     throw new ReactionError("invalid-param", "You must provide shopId");
   }
 
-  return Cart.findOne({ accountId, shopId });
+  return Cart.findOne({ accountId, shopId, rfqId: { $exists: false } });
 }

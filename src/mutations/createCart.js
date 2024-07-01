@@ -33,14 +33,14 @@ export default async function createCart(context, input) {
     throw new ReactionError("invalid-param", "A cart may not be created without at least one item in it");
   }
 
-  // If we have an accountId and that account already has a cart for this shop, throw
-  // if (accountId) {
-  //   const existingCart = await Cart.findOne({ accountId, shopId }, { projection: { _id: 1 } });
+  // If we have an accountId and that account already has a cart for this shop but not for rfq, throw
+  if (accountId && !rfqId) {
+    const existingCart = await Cart.findOne({ accountId, shopId, rfqId: { $exists: false } }, { projection: { _id: 1 } });
 
-  //   if (existingCart) {
-  //     throw new ReactionError("cart-found", "Each account may have only one cart per shop at a time");
-  //   }
-  // }
+    if (existingCart) {
+      throw new ReactionError("cart-found", "Each account may have only one cart per shop at a time");
+    }
+  }
 
   let incorrectPriceFailures,
   minOrderQuantityFailures,
