@@ -7,6 +7,10 @@ export default async function getCartById(context, { cartId } = {}) {
   
     console.log("cartId", cartId, "userId", userId)
     
+    if (!userId) {
+      throw new ReactionError("access-denied", "Please login first");
+    }
+
     if (!cartId) {
       throw new ReactionError("invalid-param", "You must provide a cartId");
     }
