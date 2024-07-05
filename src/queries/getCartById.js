@@ -18,8 +18,8 @@ export default async function getCartById(context, { cartId } = {}) {
     }
 
 
-   const encodedID= encodeCartOpaqueId("yd7SJf6enswwHwBwb")
-   console.log("DATA", encodedID)
+  //  const encodedID= encodeCartOpaqueId("yd7SJf6enswwHwBwb")
+  //  console.log("DATA", encodedID)
 
   
 
@@ -41,35 +41,26 @@ export default async function getCartById(context, { cartId } = {}) {
 
 
     const productData = await Products.findOne({
-      _id: productId
+      _id: productId,
+      type:"simple"
     });
+
 
     const rfqData = await RFQProduct.findOne({
       _id: cartData?.rfqId
     });
-
-    if (!productData) {
-      throw new ReactionError("not-found", "Product data not found");
-    }
-
-    if (productData.type === "variant" && productVariantId) {
    
       const variantData = await Products.findOne({
-        _id: productVariantId
+        _id: productVariantId,
+        type:"variant"
       });
 
-      if (variantData) {
-        console.log("VARIANT DATA IS HERE ")
-        return {
-          ...cartData,
-          variantData: variantData,
-          rfqData
-        };
-      }
-    }
+
+    
     return {
       ...cartData,
       productData,
+      variantData,
       rfqData
     }
   } catch(err) {
